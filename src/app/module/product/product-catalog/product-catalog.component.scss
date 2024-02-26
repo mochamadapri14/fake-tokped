@@ -1,0 +1,22 @@
+.icon {
+    &-star {
+        color: orange;
+    }
+
+    &-circle {
+        color: gray;
+        font-size: 6px;
+    }
+}
+
+.text-truncate-container {
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.img-top {
+    height: 60%;
+    border-radius: 2%;
+}
