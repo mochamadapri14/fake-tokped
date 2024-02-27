@@ -12,15 +12,28 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+.card-rounded {
+    border: 1px solid gray;
+    border-radius: 20%;
+}
+
 .border-bottom {
     border: 0 0 0 3px;
     padding: 6px 0 6px 0;
     margin: 1em 0 1em 0;
 }
 
-.color-primary {
-    color: #8CB9BD !important;
+.line-bottom {
+    border: 0 0 0 3px;
+    padding: 6px 0 6px 0;
+    margin: 1em 0 1em 0;
 }
+
+.color-primary {
+    color: #008920 !important;
+}
+
 
 .btn-primary,
 .btn-primary:hover,

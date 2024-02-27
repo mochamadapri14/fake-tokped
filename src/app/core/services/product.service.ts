@@ -18,4 +18,8 @@ export class ProductService {
     return <Observable<any[]>>this.http.get(this.PROUDCT_URL);
   }
 
+  public getDetailProduct(id: string): Observable<any[]> {
+    return <Observable<any[]>>this.http.get(`${this.PROUDCT_URL}/${id}`);
+  }
+
 }
