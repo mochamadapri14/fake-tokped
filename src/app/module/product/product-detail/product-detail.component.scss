@@ -18,22 +18,24 @@
     border: 1px solid gray;
 }
 
-.line-gray {
-    background-color: rgb(246, 246, 246);
-    padding: 0.2em
-}
-
-.line {
-    background-color: rgb(246, 246, 246);
-    padding: 0.05em;
-    margin-top: -0.5em;
-}
 
 .font-bold {
     font-weight: bold;
 }
 
 .store-img {
-    width: 2em;
-    height: 2em;
+    width: 3em;
+    height: 3em;
+    margin-left: 1em;
+}
+
+.icon-header {
+    font-size: 1.5em;
+    margin: 0 0.4em 0 0.4em;
+}
+
+.mark-cart {
+    top: 8px;
+    left: 35px;
+    padding: 4px;
 }

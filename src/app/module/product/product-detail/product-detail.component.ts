@@ -12,6 +12,8 @@ export class ProductDetailComponent implements OnInit {
 
   protected id!: string;
 
+  protected totalOrders: number = this.cartService.countOfCart();
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -53,6 +55,10 @@ export class ProductDetailComponent implements OnInit {
       refOrders = [...refOrders, { ...this.productDetail, quantity: 1 }];
     }
     this.cartService.orderProduct(refOrders);
+    this.goToCart();
+  }
+
+  protected goToCart(): void {
     this.router.navigate(['/cart']);
   }
 

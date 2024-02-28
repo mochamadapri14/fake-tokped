@@ -1,43 +1,130 @@
 <header-page>
-    <img src="assets/image/tokopedia.svg" alt="">
+    <div class="d-flex flex-row">
+        <input type="text" class="icon-search " placeholder="Cari di Tokopedia">
+        <i class="bi bi-envelope icon-header"></i>
+        <i class="bi bi-bell icon-header"></i>
+        <div class="position-relative">
+            <i class="bi bi-cart icon-header" (click)="goToCart()"></i>
+            <span class="position-absolute mark-cart translate-middle badge bg-danger">
+                {{totalOrders}}
+                <span class="visually-hidden">unread messages</span>
+            </span>
+        </div>
+        <i class="bi bi-list icon-header"></i>
+    </div>
+    <!-- <img src="assets/image/tokopedia.svg" alt=""> -->
 
 </header-page>
 <!-- Section-->
-<section class="py-5">
-    <div class="container">
-        <div class="d-flex flex-wrap justify-content-between w-100 px-2">
-            <ng-container *ngIf="productCalatogs.length > 0">
-                <ng-container *ngFor="let product of productCalatogs">
-                    <div class="d-flex flex-column h-auto my-3 position-relative" style="width: 48%;">
-                        <div class="position-absolute badge-discount translate-middle" *ngIf="product.discount > 0">
-                            <span class="badge rounded-pill background-secondary">{{product?.discount}}%</span>
-                        </div>
-                        <img class="img-top" [src]="product.images[0]" alt="Card image cap">
 
-                        <div class="d-flex flex-column" (click)="onDetail(product)">
+<banner-page></banner-page>
+
+<div class="line-gray my-4"></div>
+
+<div class="d-flex flex-column px-3 my-5" *ngIf="productDiscount.length > 0">
+    <h1>Produk yang lagi Promo</h1>
+    <div class="overflow-scroll">
+        <div class="d-flex ">
+            <ng-container *ngFor="let pd of productDiscount">
+                <div class="d-flex flex-row">
+                    <div class="card-product-discount d-flex flex-column h-auto my-3 position-relative">
+                        <div class="position-absolute badge-discount translate-middle" *ngIf="pd.discount > 0">
+                            <span class="badge rounded-pill background-secondary">{{pd?.discount}}%</span>
+                        </div>
+                        <img class="img-discount" [src]="pd.images[0]" alt="Card image cap">
+
+                        <div class="d-flex flex-column" (click)="onDetail(pd)">
                             <p class="text-truncate-container my-2">
-                                {{product?.title}}
+                                {{pd?.title}}
                             </p>
                             <span class="d-flex flex-row">
-                                <h6>Rp{{product?.discountPrice | number}} </h6>
+                                <h6>Rp{{pd?.discountPrice | number}} </h6>
                                 <p class="mx-1 text-decoration-line-through text-truncate"
-                                    *ngIf="product.discountPrice < product.price">Rp{{product?.price |
+                                    *ngIf="pd.discountPrice < pd.price">
+                                    Rp{{pd?.price |
                                     number}}</p>
                             </span>
                             <div class="d-flex flex-row">
-                                <i class="bi bi-star-fill icon-star"></i>
-                                <p class="mx-1">{{product?.feedback}}</p>
-                                <i class="bi bi-circle-fill icon-circle m-2"></i>
-                                <p class="mx-1">{{product?.sale}} terjual</p>
-                            </div>
-                            <div class="d-flex flex-row">
                                 <img src="assets/image/pro-merchant.png" class="img-merchant mt-1" alt="">
-                                <p class="mx-2">{{product?.store_location}}</p>
+                                <p class="mx-2">{{pd?.store_location}}</p>
                             </div>
                         </div>
                     </div>
+                </div>
+
+            </ng-container>
+        </div>
+    </div>
+
+
+</div>
+<menu-category (selectionCategory)="onSelectCategory($event)"></menu-category>
+
+<section>
+    <div class="container ">
+
+        <div class="d-flex flex-wrap justify-content-between w-100 px-2">
+            <ng-container *ngIf="messageError === ''">
+                <ng-container *ngIf="productCalatogs.length > 0">
+                    <ng-container *ngFor="let product of productCalatogs">
+                        <div class="d-flex flex-column h-auto my-3 position-relative" style="width: 48%;">
+                            <div class="position-absolute badge-discount translate-middle" *ngIf="product.discount > 0">
+                                <span class="badge rounded-pill background-secondary">{{product?.discount}}%</span>
+                            </div>
+                            <img class="img-top" [src]="product.images[0]" alt="Card image cap">
+
+                            <div class="d-flex flex-column" (click)="onDetail(product)">
+                                <p class="text-truncate-container my-2">
+                                    {{product?.title}}
+                                </p>
+                                <span class="d-flex flex-row">
+                                    <h6>Rp{{product?.discountPrice | number}} </h6>
+                                    <p class="mx-1 text-decoration-line-through text-truncate"
+                                        *ngIf="product.discountPrice < product.price">Rp{{product?.price |
+                                        number}}</p>
+                                </span>
+                                <div class="d-flex flex-row">
+                                    <i class="bi bi-star-fill icon-star"></i>
+                                    <p class="mx-1">{{product?.feedback}}</p>
+                                    <i class="bi bi-circle-fill icon-circle m-2"></i>
+                                    <p class="mx-1">{{product?.sale}} terjual</p>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <img src="assets/image/pro-merchant.png" class="img-merchant mt-1" alt="">
+                                    <p class="mx-2">{{product?.store_location}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
                 </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="messageError !== ''">
+                <h1 class="color-primary text-center">
+                    Pencarianmu '{{selectedCategory}}' sedang tidak tersedia
+                </h1>
             </ng-container>
         </div>
     </div>
 </section>
+
+<footer-page>
+    <div class="d-flex justify-content-between mx-3">
+        <div class="d-flex flex-column">
+            <i class="bi bi-play-btn text-center menu-icon"></i>
+            <p class="menu-text">Feed</p>
+        </div>
+        <div class="d-flex flex-column">
+            <i class="bi bi-bag-check text-center menu-icon"></i>
+            <p class="menu-text">Official Store</p>
+        </div>
+        <div class="d-flex flex-column">
+            <i class="bi bi-heart text-center menu-icon"></i>
+            <p class="menu-text">Wishlist</p>
+        </div>
+        <div class="d-flex flex-column">
+            <i class="bi bi-journal-text text-center menu-icon"></i>
+            <p class="menu-text">Transaksi</p>
+        </div>
+    </div>
+</footer-page>

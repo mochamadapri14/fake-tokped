@@ -17,4 +17,8 @@ export class CartService {
     localStorage.setItem('ORDERS', JSON.stringify(newProducts));
   }
 
+  public countOfCart(): number {
+    return this.getOrderProducts().length;
+  }
+
 }

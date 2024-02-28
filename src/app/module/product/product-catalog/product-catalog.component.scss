@@ -1,5 +1,6 @@
 .container {
     margin-top: 1em;
+    margin-bottom: 8em;
 }
 
 .badge-discount {
@@ -7,22 +8,21 @@
     left: 0.8em;
 }
 
-.icon {
-    &-star {
-        color: orange;
-    }
-
-    &-circle {
-        color: gray;
-        font-size: 6px;
-    }
-}
-
 .text-truncate-container {
     -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.card-product-discount {
+    width: 130px;
+    margin: 0 1em 0 1em;
+}
+
+.img-discount {
+    height: 8em;
+    border-radius: 5%;
 }
 
 .img-top {
@@ -36,10 +36,6 @@
     right: 10px;
 }
 
-p {
-    font-weight: 100;
-}
-
 .text-decoration-line-through {
     font-size: 12px;
     color: gray;
@@ -48,4 +44,34 @@ p {
 .img-merchant {
     width: 1em;
     height: 1em;
+}
+
+.icon-search {
+    width: 12em;
+    border: 1px solid rgb(219, 216, 216);
+    border-radius: 5px;
+    padding: 6px 0px 6px 30px;
+    background: url("https://www.iconpacks.net/icons/2/free-search-icon-2903-thumb.png") no-repeat left;
+    background-size: 18px;
+    font-size: 14px;
+    margin-right: 1em;
+}
+
+.icon-header {
+    font-size: 1.5em;
+    margin: 0 0.4em 0 0.4em;
+}
+
+.mark-cart {
+    top: 8px;
+    left: 35px;
+    padding: 4px;
+}
+
+.menu-icon {
+    font-size: 24px;
+}
+
+.menu-text {
+    font-size: 14px;
 }

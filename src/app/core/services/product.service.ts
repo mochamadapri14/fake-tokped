@@ -14,7 +14,12 @@ export class ProductService {
     private http: HttpClient
   ) { }
 
-  public getAllProducts(): Observable<any[]> {
+  public getAllProducts(category: string): Observable<any[]> {
+    const url = `${this.PROUDCT_URL}?category=${category}`;
+    return <Observable<any[]>>this.http.get(url);
+  }
+
+  public getAllProductDiscount(): Observable<any[]> {
     return <Observable<any[]>>this.http.get(this.PROUDCT_URL);
   }
 
