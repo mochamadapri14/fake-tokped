@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 @Component({
   selector: 'header-page',
   templateUrl: './header-page.component.html',

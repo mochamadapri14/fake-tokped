@@ -1,3 +1,7 @@
+<header-page>
+    <img src="assets/image/tokopedia.svg" alt="">
+
+</header-page>
 <!-- Section-->
 <section class="py-5">
     <div class="container">
@@ -5,10 +9,10 @@
             <ng-container *ngIf="productCalatogs.length > 0">
                 <ng-container *ngFor="let product of productCalatogs">
                     <div class="d-flex flex-column h-auto my-3 position-relative" style="width: 48%;">
-                        <div class="postion-absolute top-0 start-0 " *ngIf="product.discount > 0">
+                        <div class="position-absolute badge-discount translate-middle" *ngIf="product.discount > 0">
                             <span class="badge rounded-pill background-secondary">{{product?.discount}}%</span>
                         </div>
-                        <img class="img-top" src="assets/image/oli.png" alt="Card image cap">
+                        <img class="img-top" [src]="product.images[0]" alt="Card image cap">
 
                         <div class="d-flex flex-column" (click)="onDetail(product)">
                             <p class="text-truncate-container my-2">
@@ -16,7 +20,7 @@
                             </p>
                             <span class="d-flex flex-row">
                                 <h6>Rp{{product?.discountPrice | number}} </h6>
-                                <p class="mx-1 text-decoration-line-through"
+                                <p class="mx-1 text-decoration-line-through text-truncate"
                                     *ngIf="product.discountPrice < product.price">Rp{{product?.price |
                                     number}}</p>
                             </span>

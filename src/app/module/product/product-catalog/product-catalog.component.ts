@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/core/services/product.service';
 
@@ -12,6 +12,8 @@ export class ProductCatalogComponent implements OnInit {
   productCalatogs: any[] = [];
 
   totalOrders: number = 0;
+
+  @ViewChild('header_content') headerTemplate!: TemplateRef<any>
   constructor(
     private productService: ProductService,
     private router: Router
@@ -30,7 +32,6 @@ export class ProductCatalogComponent implements OnInit {
           return val;
         });
         this.productCalatogs = collections;
-        console.log(this.productCalatogs);
       },
       error: () => { }
     })

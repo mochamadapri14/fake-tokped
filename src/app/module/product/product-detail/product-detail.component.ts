@@ -29,6 +29,10 @@ export class ProductDetailComponent implements OnInit {
   protected onLoadDetail() {
     this.productService.getDetailProduct(this.id).subscribe({
       next: (res) => {
+        res = {
+          ...res,
+          discountPrice: this.calculateDisc(res.price, res.discount)
+        }
         this.productDetail = res;
       },
       error: () => { }
@@ -59,5 +63,10 @@ export class ProductDetailComponent implements OnInit {
       },
       error: () => { }
     });
+  }
+
+  private calculateDisc(price: number, disc: number): number {
+    const discount = (price * disc) / 100;
+    return price - discount;
   }
 }

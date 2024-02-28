@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/core/services/cart.service';
@@ -13,7 +14,10 @@ export class CartListComponent implements OnInit {
 
   selectedCollections: any[] = [];
 
-  constructor(private cartService: CartService, private router: Router) {
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private location: Location) {
     this.orderCollections = this.orderCollections.map(val => {
       val.discountPrice = this.calculateDisc(val.price, val.discount);
       val.checked = false;
@@ -85,6 +89,10 @@ export class CartListComponent implements OnInit {
       const newOrders = this.orderCollections.filter(p => p.id !== id);
       this.reloadOrders(newOrders);
     });
+  }
+
+  protected backPage() {
+    this.location.back();
   }
 
   private reloadOrders(newOrders: any[]): void {

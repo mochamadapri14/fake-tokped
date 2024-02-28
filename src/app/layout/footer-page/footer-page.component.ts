@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'footer-page',
@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class FooterPageComponent {
 
+  constructor() { }
 }
