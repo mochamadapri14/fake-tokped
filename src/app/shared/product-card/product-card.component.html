@@ -1,6 +1,6 @@
 <div class="d-flex flex-column h-auto my-3 position-relative">
     <div class="position-absolute badge-discount translate-middle" *ngIf="product.discount > 0">
-        <span class="badge rounded-pill background-secondary">{{product?.discount}}%</span>
+        <span class="badge rounded-pill bg-danger">{{product?.discount}}%</span>
     </div>
     <img class="img-top" [src]="product.images[0]" alt="Card image cap">
 

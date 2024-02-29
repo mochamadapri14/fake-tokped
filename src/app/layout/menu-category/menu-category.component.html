@@ -1,8 +1,8 @@
-<div class="menu-category">
+<div class="menu-category mx-2">
     <div class="overflow-scroll">
         <div class="d-flex flex-row">
             <ng-container *ngFor="let category of categoryMenu">
-                <span class="badge bg-{{category.badge}} px-4 py-2 mx-3 text-wrap font-bold"
+                <span class="badge bg-{{category.badge}} px-4 py-2 mx-2 text-wrap font-bold"
                     (click)="onSelect(category.key)">
                     {{category.label}}
                 </span>

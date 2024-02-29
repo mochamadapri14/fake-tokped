@@ -70,7 +70,7 @@ export class CartOrderComponent implements OnInit {
     const orders = this.cartService.getOrderProducts();
     const newOrders = orders.filter(p => p.id !== this.productDetail.id);
     this.cartService.orderProduct(newOrders);
-    if (orders.length > newOrders.length) this.router.navigate(['/product']);
+    this.router.navigate(['/product']);
   }
 
   isChecked: boolean = false;
