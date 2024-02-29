@@ -8,12 +8,16 @@ import { Product } from 'src/app/core/interface/ProductInterface';
 })
 export class ProductCardComponent {
 
-  @Input() item!: any;
+  @Input() product!: any;
+  @Input() showRating: boolean = true;
 
-  @Output() cartOrder = new EventEmitter<any>();
+  @Output() selectProduct = new EventEmitter<any>();
 
   constructor() {
+  }
 
+  onDetail() {
+    this.selectProduct.emit(this.product);
   }
 
 }

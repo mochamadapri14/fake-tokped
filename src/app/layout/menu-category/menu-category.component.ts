@@ -5,6 +5,7 @@ const CATEGORY = [
   { key: 'makanan,minuman', label: 'Makanan Minuman', badge: 'success' },
   { key: 'dapur', label: 'Bahan Dapur', badge: 'warning' },
   { key: 'otomotif', label: 'Otomotif', badge: 'primary' },
+  { key: 'laptop,hp', label: 'Laptop Handphone', badge: 'info' },
   { key: 'tas', label: 'Tas Sekolah', badge: 'danger' },
 ];
 
