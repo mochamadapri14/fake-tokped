@@ -91,6 +91,11 @@ export class CartListComponent implements OnInit {
     });
   }
 
+  protected buyProduct(): void {
+    this.removeOrder();
+    this.router.navigate(['/product']);
+  }
+
   protected backPage() {
     this.location.back();
   }

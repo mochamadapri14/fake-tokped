@@ -62,6 +62,10 @@ export class ProductDetailComponent implements OnInit {
     this.router.navigate(['/cart']);
   }
 
+  protected goToOrder(id: string): void {
+    this.router.navigate(['/cart/buy/' + id]);
+  }
+
   private onLoadParam(): void {
     this.route.params.subscribe({
       next: (param) => {

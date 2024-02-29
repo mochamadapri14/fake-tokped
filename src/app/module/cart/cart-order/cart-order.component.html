@@ -1,0 +1,74 @@
+<header-page>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex flex-row">
+            <i class="bi bi-arrow-left button-back" (click)="backPage()"></i>
+            <span class="font-bold mx-3 mt-1">Beli Langsung</span>
+        </div>
+    </div>
+</header-page>
+<div class="overflow-auto py-3" style="height: 48em;">
+    <section class="container">
+        <div class="d-flex flex-column">
+            <h5 class="font-bold">Barang yang dibeli</h5>
+            <div class="d-flex flex-column">
+                <div class="d-flex flex-row mt-2">
+                    <img [src]="productDetail.store_img" class="img-merchant" alt="">
+                    <h6 class="mx-2 font-bold">{{productDetail.store_name}}</h6>
+                </div>
+                <div class="d-flex flex-row">
+                    <p>{{productDetail.store_location}}</p>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row mt-3">
+                <img [src]="productDetail.images[0]" class="img-product" alt="">
+                <div class="d-flex flex-column mx-3">
+                    <h3 class="font-bold text-truncate-container">
+                        {{productDetail.title}}
+                    </h3>
+                    <div class="d-flex flex-row">
+                        <div class="d-flex flex-row my-1" *ngIf="productDetail.discount > 0">
+                            <div class="badge bg-danger">
+                                {{productDetail.discount}}%
+                            </div>
+                            <h5 class="text-decoration-line-through mx-1 my-auto">
+                                Rp{{productDetail.price | number}}
+                            </h5>
+                        </div>
+                        <span class="font-bold">
+                            Rp{{productDetail.discountPrice | number}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between my-3">
+                <h6 class="color-primary my-auto">Tulis Catatan</h6>
+                <div class="d-flex justify-content-between button-calculate mx-3 py-auto">
+                    <i class="bi bi-dash mx-2" style="font-size: 24px;" [ngClass]="{
+                        'color-gray': productDetail.quantity == 1,
+                        'color-primary': productDetail.quantity > 1
+                    }" (click)="manageQuantity('reduce')"></i>
+                    <span class="mx-3 my-auto">{{productDetail.quantity}}</span>
+                    <i class="bi bi-plus mx-2 color-primary" style="font-size: 24px;"
+                        (click)="manageQuantity('add')"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer-page>
+    <div class="d-flex justify-content-between">
+        <span>
+            <span>Total Bayar</span>
+            <h5>Rp{{totalPrice | number}}</h5>
+        </span>
+        <div class="my-auto">
+            <button class="btn btn-success" (click)="buyProduct()">
+                <i class="bi bi-shield-check"></i>
+                Bayar
+            </button>
+        </div>
+    </div>
+</footer-page>

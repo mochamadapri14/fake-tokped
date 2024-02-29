@@ -8,7 +8,6 @@
     </div>
 </header-page>
 <div class="cart-container">
-
     <ng-container *ngIf="orderCollections.length == 0">
         <div class="d-flex flex-column mx-3">
             <div class="d-flex flex-row">
@@ -25,48 +24,51 @@
 
     </ng-container>
     <ng-container *ngIf="orderCollections.length > 0">
-        <div class="d-flex justify-content-between mx-3" *ngIf="totalSelected > 0">
-            <p>{{totalSelected}} produk terpilih</p>
-            <span class="color-primary font-bold" (click)="removeOrder()">Hapus</span>
-        </div>
-        <ng-container *ngFor="let order of orderCollections">
-            <div class="d-flex flex-column mb-5">
-                <div class="d-flex flex-row">
-                    <div class="d-flex flex-row ">
-                        <label class="container margin-x">
-                            <input type="checkbox" [checked]="order.checked" (change)="selectOrder(order)">
-                            <span class="checkmark"></span>
-                        </label>
-                        <!-- <input class="input-checkbox" type="checkbox" id="{{order.title}}{{order.id}}"> -->
-                        <img class="img-order" [src]="order.images[0]" alt="">
-                    </div>
-                    <div class="d-flex flex-column mt-2 w-100">
-                        <p class="text-truncate-container">{{order.title}}</p>
-                        <span class="d-flex flex-row text-price">
-                            <h6>Rp{{order?.discountPrice | number}} </h6>
-                            <p class="mx-1 text-decoration-line-through" *ngIf="order.discountPrice < order.price">
-                                Rp{{order?.price | number}}
-                            </p>
-                        </span>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row">
-                                <i class="bi bi-building-check icon-note"></i>
-                                <i class="bi bi-heart mx-2 icon-note"></i>
-                            </div>
-                            <div class="d-flex justify-content-between button-calculate mx-3">
-                                <i class="bi mx-2" [ngClass]="{
-                                    'bi-trash': order.quantity == 1,
-                                    'bi-dash': order.quantity > 1
-                                }" (click)="manageQuantity(order, 'reduce')"></i>
-                                <span class="mx-3">{{order.quantity}}</span>
-                                <i class="bi bi-plus mx-2" (click)="manageQuantity(order, 'add')"></i>
-                            </div>
+        <div class="overflow-auto pb-5" style="height: 45em;">
+            <div class="d-flex justify-content-between mx-3" *ngIf="totalSelected > 0">
+                <p>{{totalSelected}} produk terpilih</p>
+                <span class="color-primary font-bold" (click)="removeOrder()">Hapus</span>
+            </div>
+            <ng-container *ngFor="let order of orderCollections">
+                <div class="d-flex flex-column mb-5">
+                    <div class="d-flex flex-row">
+                        <div class="d-flex flex-row ">
+                            <label class="container margin-x">
+                                <input type="checkbox" [checked]="order.checked" (change)="selectOrder(order)">
+                                <span class="checkmark"></span>
+                            </label>
+                            <!-- <input class="input-checkbox" type="checkbox" id="{{order.title}}{{order.id}}"> -->
+                            <img class="img-order" [src]="order.images[0]" alt="">
                         </div>
+                        <div class="d-flex flex-column mt-2 w-100">
+                            <p class="text-truncate-container">{{order.title}}</p>
+                            <span class="d-flex flex-row text-price">
+                                <h6>Rp{{order?.discountPrice | number}} </h6>
+                                <p class="mx-1 text-decoration-line-through" *ngIf="order.discountPrice < order.price">
+                                    Rp{{order?.price | number}}
+                                </p>
+                            </span>
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row">
+                                    <i class="bi bi-building-check icon-note"></i>
+                                    <i class="bi bi-heart mx-2 icon-note"></i>
+                                </div>
+                                <div class="d-flex justify-content-between button-calculate mx-3">
+                                    <i class="bi mx-2" [ngClass]="{
+                                        'bi-trash': order.quantity == 1,
+                                        'bi-dash': order.quantity > 1
+                                    }" (click)="manageQuantity(order, 'reduce')"></i>
+                                    <span class="mx-3">{{order.quantity}}</span>
+                                    <i class="bi bi-plus mx-2" (click)="manageQuantity(order, 'add')"></i>
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-        </ng-container>
+            </ng-container>
+        </div>
+
 
         <div class="fixed-bottom bg-white">
             <div class="d-flex justify-content-between p-3">
@@ -80,7 +82,7 @@
                         <span class="text-price" *ngIf="totalPrice > 0">Rp{{totalPrice | number}}</span>
                         <span class="text-price" *ngIf="totalPrice == 0">-</span>
                     </div>
-                    <button class="btn btn-sm btn-success" style="width: 7em;">
+                    <button class="btn btn-sm btn-success" style="width: 7em;" (click)="buyProduct()">
                         Beli ({{totalSelected}})
                     </button>
                 </div>
