@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'banner-page',
@@ -7,8 +8,6 @@ import { Component, ViewChild } from '@angular/core';
 })
 export class BannerComponent {
 
-
   constructor() {
-
   }
 }

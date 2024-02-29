@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import { debounceTime, forkJoin } from 'rxjs';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductService } from 'src/app/core/services/product.service';
 
@@ -24,16 +25,21 @@ export class ProductCatalogComponent implements OnInit {
   ) {
   }
 
+  protected searchTitle = new FormControl('');
   ngOnInit(): void {
-    this.onLoad();
+    this.onLoad('');
+    this.searchTitle.valueChanges.pipe(debounceTime(500)).subscribe(search => {
+      const _searchValue = search ?? '';
+      this.onLoad(_searchValue);
+    });
     this.onLoadOnlyDiscount();
   }
 
   protected selectedCategory: string = '';
   protected messageError = '';
-  protected onLoad(): void {
+  protected onLoad(searchTitle: string): void {
 
-    const allProducts = this.productService.getAllProducts(this.selectedCategory);
+    const allProducts = this.productService.getAllProducts(this.selectedCategory, searchTitle);
 
     allProducts.subscribe({
       next: (productCollections) => {
@@ -50,7 +56,6 @@ export class ProductCatalogComponent implements OnInit {
         this.messageError = err.error;
       }
     });
-    this.productService.getAllProducts(this.selectedCategory).subscribe()
   }
 
   protected onLoadOnlyDiscount(): void {
@@ -78,7 +83,8 @@ export class ProductCatalogComponent implements OnInit {
 
   protected onSelectCategory(category: string): void {
     this.selectedCategory = category;
-    this.onLoad();
+    this.searchTitle.setValue('');
+    this.onLoad('');
   }
 
   private calculateDisc(price: number, disc: number): number {

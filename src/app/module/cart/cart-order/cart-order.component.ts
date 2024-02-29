@@ -37,11 +37,14 @@ export class CartOrderComponent implements OnInit {
           discountPrice: this.calculateDisc(res.price, res.discount)
         }
         this.productDetail = this.productReference() ?? res;
+
+        this.totalPrice = this.productDetail.discountPrice * this.productDetail.quantity;
       },
       error: () => { }
     });
   }
 
+  totalPrice = 0;
   protected manageQuantity(action: string) {
     const increement = action === 'add';
     if (increement) {
@@ -51,6 +54,9 @@ export class CartOrderComponent implements OnInit {
         this.productDetail.quantity -= 1;
       }
     }
+
+    this.totalPrice = this.productDetail.discountPrice * this.productDetail.quantity;
+
     let orders = this.cartService.getOrderProducts();
     orders.forEach(order => {
       if (order.id === this.productDetail.id) {
@@ -65,6 +71,14 @@ export class CartOrderComponent implements OnInit {
     const newOrders = orders.filter(p => p.id !== this.productDetail.id);
     this.cartService.orderProduct(newOrders);
     if (orders.length > newOrders.length) this.router.navigate(['/product']);
+  }
+
+  isChecked: boolean = false;
+  protected addProtection(): void {
+    this.isChecked = !this.isChecked;
+    this.totalPrice = this.isChecked
+      ? this.totalPrice + 2600
+      : this.totalPrice - 2600;
   }
 
   private onLoadParam(): void {
@@ -91,8 +105,8 @@ export class CartOrderComponent implements OnInit {
     this.location.back();
   }
 
-  get totalPrice(): number {
-    return this.productDetail.discountPrice * this.productDetail.quantity;
-  }
+  // get totalPrice(): number {
+  //   return this.productDetail.discountPrice * this.productDetail.quantity;
+  // }
 
 }

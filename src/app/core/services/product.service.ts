@@ -14,8 +14,8 @@ export class ProductService {
     private http: HttpClient
   ) { }
 
-  public getAllProducts(category: string): Observable<any[]> {
-    const url = `${this.PROUDCT_URL}?category=${category}`;
+  public getAllProducts(category: string, title: string): Observable<any[]> {
+    const url = `${this.PROUDCT_URL}?category=${category}&title=${title}`;
     return <Observable<any[]>>this.http.get(url);
   }
 
